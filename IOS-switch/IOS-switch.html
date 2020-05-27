@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IOS风格开关按钮</title>
+    <style>
+        .switch-btn{
+            position: relative;
+            width: 52px;
+            height: 32px;
+            background-color: #dfdfdf;
+            border-radius: 16px;
+            outline: 0;
+            box-sizing: border-box;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        .switch-btn:checked{
+            border-color:#04be02;
+            background-color: #04be02;
+        }
+        .switch-btn:before,.switch-btn:after{
+            content:'';
+            position: absolute;
+            top:0;
+            left: 0;
+            height: 30px;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+        .switch-btn:before{
+            width: 50px;
+            background-color: #fdfdfd;
+        }
+        .switch-btn:after{
+            width: 30px;
+            background-color: #fff;
+            box-shadow:0 1px 3px rgba(0,0,0,0.4)
+        }
+        .switch-btn:checked:before{
+            transform: scale(0);
+        }
+        .switch-btn:checked:after{
+            transform: translateX(22px);
+        }
+    </style>
+</head>
+<body>
+<div class="outer">
+    <input type="checkbox" class="switch-btn">
+</div>
+
+</body>
+</html>
