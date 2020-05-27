@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IOS风格开关按钮e</title>
+    <style>
+        :root{
+            --button-width:500px;
+            --button-height:295px;
+            --toggle-diameter:255px;
+            --button-toggle-offset:calc((var(--button-height) -  var(--toggle-diameter))/2);
+            --toggle-shadow-offset:10px;
+            --toggle-wider:333px;
+            --color-grey:#e9e9ea;
+            --color-green:#30d158;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        /*隐藏原生checkbox*/
+        #toggle{
+            display: none;
+        }
+        /*设置按钮背景样式*/
+        span{
+            display: inline-block;
+            width: var(--button-width);
+            height: var(--button-height);
+            background-color: var(--color-grey);
+            border-radius: calc(var(--button-height)/2);
+            position: relative;
+            transition: 0.3s all ease-in-out;
+        }
+        /*设置圆形按钮样式*/
+        span::after{
+            content:'';
+            display: inline-block;
+            width: var(--toggle-diameter);
+            height: var(--toggle-diameter);
+            background-color: #fff;
+            border-radius: calc(var(--toggle-diameter)/2);
+            position: absolute;
+            top:var(--button-toggle-offset);
+            transform: translateX(var(--button-toggle-offset));
+            box-shadow:var(--toggle-shadow-offset) 0 calc(var(--toggle-shadow-offset)*4) rgba(0,0,0,0.1);
+            transition: 0.3s all ease-in-out;
+        }
+        /*按钮选中 背景颜色变绿*/
+        input[type="checkbox"]:checked + span{
+            background-color: var(--color-green);
+        }
+        /*按钮选中 圆形移动到右边*/
+        input[type="checkbox"]:checked +span::after{
+            transform: translateX(calc(var(--button-width) - var(--toggle-diameter) - var(--toggle-shadow-offset)));
+            box-shadow:calc(var(--toggle-shadow-offset)*-1) 0 calc(var(--toggle-shadow-offset)*4) rgba(0,0,0,0.1);
+        }
+        /*按钮在左边 长按 变长*/
+        input[type="checkbox"]:active +span::after{
+            width:var(--toggle-wider) ;
+        }
+        /*按钮在右边 长按变长*/
+        input[type="checkbox"]:checked:active + span::after{
+            transform: translateX(calc(var(--button-width) - var(--toggle-wider) - var(--toggle-shadow-offset)));
+        }
+
+
+    </style>
+</head>
+<body>
+<label for="toggle">
+    <input type="checkbox" id="toggle">
+    <span></span>
+</label>
+
+</body>
+</html>
